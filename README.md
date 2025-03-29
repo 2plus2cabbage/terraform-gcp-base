@@ -1,2 +1,33 @@
-# gcp-base
- A base GCP deployment with a Windows Instance
+# GCP Windows Instance Terraform Deployment
+
+Deploys a Windows Server 2022 VM in Google Cloud Platform (GCP) with RDP and internet access.
+
+## Files
+The project is split into multiple files to illustrate modularity and keep separate constructs distinct, making it easier to manage and understand.
+- `main.tf`: Terraform provider block (`hashicorp/google`).
+- `gcpprovider.tf`: GCP provider config with `project_id`, `region`, etc.
+- `variables.tf`: Variables and locals for project, region, etc.
+- `terraform.tfvars.template`: Template for sensitive/custom values; rename to `terraform.tfvars` and add your credentials.
+- `locals.tf`: Local variables for naming conventions.
+- `networking.tf`: VPC, subnet.
+- `firewall.tf`: Firewall rules for RDP (TCP 3389) and outbound traffic.
+- `windows.tf`: Windows VM, outputs public/private IPs.
+
+## How It Works
+- **Networking**: VPC and subnet provide connectivity. Public IP enables inbound/outbound traffic.
+- **Security**: Allows RDP from your IP and all outbound traffic.
+- **Instance**: Windows Server 2022 VM with public IP, firewall disabled via `metadata`.
+
+## Prerequisites
+- A GCP project with Compute Engine API enabled.
+- A service account key, noting `project_id`, `region`, and path to the key file.
+- Terraform installed on your machine.
+- Examples are demonstrated using Visual Studio Code (VSCode).
+
+## Deployment Steps
+1. Update `terraform.tfvars` with GCP credentials and your public IP in `my_public_ip`.
+2. Run `terraform init`, then (optionally) `terraform plan` to preview changes, then `terraform apply` (type `yes`).
+3. Get the public IP from the `gcp_vm_public_ip` output on the screen, or run `terraform output gcp_vm_public_ip`, or check in the GCP Console under **Compute Engine > VM Instances**.
+4. Get the initial password in the GCP Console under **Compute Engine > VM Instances > [click running instance] > Windows Password**, or use the serial console to retrieve it.
+5. Use Remote Desktop to log in with the `Administrator` user and initial password; change the password on first login.
+6. To remove all resources, run `terraform destroy` (type `yes`).
