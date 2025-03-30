@@ -1,4 +1,4 @@
-![logo](https://github.com/2plus2cabbage/2plus2cabbage/blob/main/images/2plus2cabbage.png)
+<img align="right" width="100" src="https://github.com/2plus2cabbage/2plus2cabbage/blob/main/images/2plus2cabbage.png">
 ![gcp-base](https://github.com/2plus2cabbage/2plus2cabbage/blob/main/images/gcp-base.png)
 
 # GCP Windows Instance Terraform Deployment
