@@ -1,6 +1,6 @@
 <img align="right" width="150" src="https://github.com/2plus2cabbage/2plus2cabbage/blob/main/images/2plus2cabbage.png">
 
-<img src="https://github.com/2plus2cabbage/2plus2cabbage/blob/main/images/gcp-base.png" alt="gcp-base" width="200" align="left">
+<img src="https://github.com/2plus2cabbage/2plus2cabbage/blob/main/images/gcp-base.png" alt="gcp-base" width="300" align="left">
 <br clear="left">
 
 # GCP Windows Instance Terraform Deployment
