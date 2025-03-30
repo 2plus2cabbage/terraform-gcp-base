@@ -35,6 +35,6 @@ The project is split into multiple files to illustrate modularity and keep separ
 6. To remove all resources, run `terraform destroy` (type `yes`).
 
 ## Potential costs and licensing
-- The resources deployed using this Terraform configuration are generally designed to incur minimal to no costs, provided they are terminated promptly after creation.
-- It is important to fully understand your cloud provider's billing structure and any potential costs associated with the deployment of resources in public cloud environments.
-- You are also responsible for any applicable software licensing fees or other charges that may arise from the deployment and usage of these resources.
+- The resources deployed using this Terraform configuration should generally incur minimal to no costs, provided they are terminated promptly after creation.
+- It is important to fully understand your cloud provider's billing structure, trial periods, and any potential costs associated with the deployment of resources in public cloud environments.
+- You are also responsible for any applicable software licensing or other charges that may arise from the deployment and usage of these resources.
