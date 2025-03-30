@@ -1,3 +1,5 @@
+![gcp-base](https://github.com/2plus2cabbage/2plus2cabbage/blob/main/images/gcp-base.png)
+
 # GCP Windows Instance Terraform Deployment
 
 Deploys a Windows Server 2022 VM in Google Cloud Platform (GCP) with RDP and internet access.
