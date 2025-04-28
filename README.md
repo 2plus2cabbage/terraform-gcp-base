@@ -11,10 +11,10 @@ Deploys a Windows Server 2022 VM in Google Cloud Platform (GCP) with RDP and int
 The project is split into multiple files to illustrate modularity and keep separate constructs distinct, making it easier to manage and understand.
 - `main.tf`: Terraform provider block (`hashicorp/google`).
 - `gcpprovider.tf`: GCP provider config with `project_id`, `region`, etc.
-- `variables.tf`: Variables and locals for project, region, etc.
+- `variables.tf`: Variables for project, region, etc.
 - `terraform.tfvars.template`: Template for sensitive/custom values; rename to `terraform.tfvars` and add your credentials.
 - `locals.tf`: Local variables for naming conventions.
-- `networking.tf`: VPC, subnet.
+- `gcp-networking.tf`: VPC, subnet, and networking CIDRs.
 - `firewall.tf`: Firewall rules for RDP (TCP 3389) and outbound traffic.
 - `windows.tf`: Windows VM, outputs public/private IPs.
 
@@ -33,8 +33,8 @@ The project is split into multiple files to illustrate modularity and keep separ
 1. Update `terraform.tfvars` with GCP credentials and your public IP in `my_public_ip`.
 2. Run `terraform init`, then (optionally) `terraform plan` to preview changes, then `terraform apply` (type `yes`).
 3. Get the public IP from the `gcp_vm_public_ip` output on the screen, or run `terraform output gcp_vm_public_ip`, or check in the GCP Console under **Compute Engine > VM Instances**.
-4. Get the initial password in the GCP Console under **Compute Engine > VM Instances > [click running instance] > Windows Password**, or use the serial console to retrieve it.
-5. Use Remote Desktop to log in with the `Administrator` user and initial password; change the password on first login.
+4. In the GCP Console, go to **Compute Engine > VM Instances > [click running instance]**, click **Set Windows Password**, enter a username (e.g., `Administrator` or a new user), click **Set**, and note the generated password.
+5. Use Remote Desktop to log in with the username and the generated password.
 6. To remove all resources, run `terraform destroy` (type `yes`).
 
 ## Potential costs and licensing
