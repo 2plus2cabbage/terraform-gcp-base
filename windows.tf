@@ -5,7 +5,7 @@ resource "google_compute_instance" "windows_instance" {
   zone                          = "${var.region}-b"                                                                         # Zone for deployment (e.g., us-central1-b)
   boot_disk {
     initialize_params {
-      image                     = "projects/windows-cloud/global/images/family/windows-2022"                                # Windows Server 2022 image
+      image                     = "projects/windows-cloud/global/images/windows-server-2022-dc-v20250813"                   # Windows Server 2022 from August 2025 to address bug in October 2025 and newer versions that breaks password setting for Windows
     }
   }
   network_interface {
@@ -14,7 +14,9 @@ resource "google_compute_instance" "windows_instance" {
       // Assigns a public IP
     }
   }
-  tags                          = ["rdp"]                                                                                   # Tags for firewall rules
+  service_account {
+    scopes                      = ["cloud-platform"]                                                                        # Full API access for guest agent
+  }
   metadata                      = {
     windows-startup-script-ps1  = "netsh advfirewall set allprofiles state off"                                             # Disables firewall on boot
   }
@@ -29,5 +31,5 @@ output "gcp_vm_public_ip" {
 # Outputs the private IP of the Windows VM for internal networking
 output "gcp_vm_private_ip" {
   value                         = google_compute_instance.windows_instance.network_interface[0].network_ip                  # Private IP address of the VM
-  description                   = "Private IP of the GCP Windows VM" # Description of the output
+  description                   = "Private IP of the GCP Windows VM"                                                        # Description of the output
 }
