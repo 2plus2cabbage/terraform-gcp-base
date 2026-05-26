@@ -3,6 +3,7 @@ resource "google_compute_instance" "windows_instance" {
   name                          = "${local.windows_name_prefix}001"                                                         # Name of the Windows VM
   machine_type                  = "e2-standard-2"                                                                           # Machine type (compute resources)
   zone                          = "${var.region}-b"                                                                         # Zone for deployment (e.g., us-central1-b)
+  tags                          = ["rdp"]
   boot_disk {
     initialize_params {
       image                     = "projects/windows-cloud/global/images/windows-server-2022-dc-v20250813"                   # Windows Server 2022 from August 2025 to address bug in October 2025 and newer versions that breaks password setting for Windows
